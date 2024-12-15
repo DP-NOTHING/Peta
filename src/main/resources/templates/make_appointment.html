@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>New Appointment</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+		crossorigin="anonymous">
+	<style>
+		h1,
+		h2 {
+			color: #007bff;
+			margin-bottom: 1rem;
+		}
+			label {
+		font-weight: bold;
+	}
+
+	.form-group {
+		margin-bottom: 2rem;
+	}
+
+	button[type="submit"] {
+		background-color: #007bff;
+		color: #fff;
+		border: none;
+	}
+
+	button[type="submit"]:hover {
+		background-color: #0069d9;
+	}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>New Appointment</h1>
+				<form method="post" th:action="@{/saveAppointmentI}" th:object="${appointment}">
+					<div class="form-group">
+						<label for="appointmentDateTime">Appointment Date and Time:</label>
+						<input type="datetime-local" id="appointmentDateTime" class="form-control"
+							th:field="*{appointmentDateTime}"required>
+					</div>
+					<div class="form-group">
+						<label for="doctor">Doctor:</label>
+						<select id="doctor" class="form-control" th:field="*{doctor} "required>
+							<option value="">Select a doctor</option>
+							<th:block th:each="doc : ${doctors}">
+								<option th:value="${doc.id}" th:text="${doc.name}"></option>
+							</th:block>
+						</select>
+					</div>
+					
+					<div class="form-group">
+						<label for="patient">Patient:</label>
+						<select id="patient" class="form-control" th:field="*{patient}"required>
+							<option value="">Select a patient</option>
+							<th:block th:each="pat : ${patients}">
+								<option th:value="${pat.id}" th:text="${pat.name}"></option>
+							</th:block>
+						</select>
+					</div>					
+					<div class="form-group">
+						<label for="appointmentStatus">Appointment Status:</label>
+						<select id="appointmentStatus" class="form-control" th:field="*{appointmentStatus}"required>
+							<option value="pending" selected="selected">Pending</option>
+							<option value="done">Done</option>
+						</select>
+					</div>
+					
+					<button type="submit" class="btn btn-primary">Save</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

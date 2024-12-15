@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <style>
+      body{
+    
+    background-image: url('/Image/1.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+        form {
+          
+   
+            border: 1px solid #ccc;
+            border-radius : 10px;
+            background-color: #fff;
+            padding: 20px 40px;
+            max-width: 500px;
+            height:auto;
+            margin: 0 auto;
+            margin-top: 80px;
+           
+        }
+
+        h3 {
+            text-align: center;
+            font-size: 30px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: rgb(0,0,200,0.7);
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color:black;
+        }
+    </style>
+</head>
+<body>
+
+ 
+ <div>
+	<form action="#" th:action="@{/savePatientI}" th:object="${patient}" method="POST">
+		<h3>Register yourself</h3>
+			<input type="text" th:field="*{name}" placeholder="Patient Name"
+				class="form-control mb-4 col-4 "required>
+
+			<input type="text" th:field="*{email}" placeholder="Patient Email" class="form-control mb-4 col-4 " required>
+			<input type="text" th:field="*{phoneNumber}" placeholder="Patient Phonenumber" class="form-control mb-4 col-4" required>
+			<input type="text" th:field="*{address}" placeholder="Patient Address" class="form-control mb-4 col-4">
+			<label>Birhtdate : </label>
+			<input type="date" th:field="*{dateOfBirth}" class="form-control datepicker mb-4 col-2" placeholder="yyyy/mm/dd" pattern="\d{4}/\d{2}/\d{2}" title="Please enter a valid date in the format yyyy/mm/dd">
+			<button type="submit" class="btn btn-info col-2"> Save Patient</button>
+		</form>
+    </div>
+</body>
+</html>

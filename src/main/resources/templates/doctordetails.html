@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <style>
+        .edit-btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="my-4">Doctor Details</h1>
+                <table class="table table-bordered">
+                    <tr>
+                        <td>ID:</td>
+                        <td th:text="${doctor.id}"></td>
+                    </tr>
+                    <tr>
+                        <td>Name:</td>
+                        <td th:text="${doctor.name}"></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td th:text="${doctor.email}"></td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number:</td>
+                        <td th:text="${doctor.phoneNumber}"></td>
+                    </tr>
+                </table>
+                <h2 class="my-4">Appointments:</h2>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Patient</th>
+                        <th>Appointment Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="appointment : ${doctor.appointments}">
+                        <td th:text="${appointment.id}"></td>
+                        <td th:text="${appointment.appointmentDateTime}"></td>
+                        <td th:text="${appointment.patient.name}"></td>
+                        <td th:text="${appointment.appointmentStatus}"></td>
+                        <td><a th:href="@{doneAppointment/{id}(id=${appointment.id})}" class="btn btn-primary">Update</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <a th:href="@{/doctors}" class="btn btn-primary edit-btn">Back to Doctors</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

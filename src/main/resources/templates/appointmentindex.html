@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Appointment Relationship Enhancement</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		
+<style>
+.topnav {
+  background-color: #338DFF;
+  overflow: hidden;
+  color: black;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #33FF80;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #04AA6D;
+  color: black;
+}
+
+.logout-button {
+  background-color: yellow;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+}
+
+.logout-button:hover {
+  background-color: red;
+  color: black;
+ }
+ .topnav b.right {
+  float: right;
+}
+
+</style>
+</head>
+<body>
+<div class="topnav">
+  <b><a th:href="@{/}">Doctor Appointment System</a></b>
+  <b><a th:href="@{patients}">Patient</a></b>
+  <b><a th:href="@{doctors}">Doctor</a></b>
+  <b><a th:href="@{appointments}">Appointment</a></b>
+  <b><a href="#">Payment</a></b>
+  <b class="right"><a th:href="@{/}" class="logout-button">Logout</a></b>
+</div>
+
+	<div class="container my-2">
+		<h1>Appointment List</h1>
+		<a th:href="@{newAppointmentForm}" class="btn btn-primary btn-sm mb-3"> Add Appointment </a>
+		<table border="1" class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>Patient Name</th>
+					<th>Doctor Name</th>
+					<th>AppointmentDateTime</th>
+					<th>AppointmentStatus</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="Appointment : ${listAppointments}">
+					<td th:text="${Appointment.id}"></td>
+					<td th:text="${Appointment.patient.name}"></td>
+					<td th:text="${Appointment.doctor.name}"></td>
+					<td th:text="${Appointment.appointmentDateTime}"></td>
+					<td th:text="${Appointment.appointmentStatus}"></td>
+					<td><a th:href="@{showFormForAppointmentUpdate/{id}(id=${Appointment.id})}" class="btn btn-primary">Update</a>
+						<a th:href="@{deleteAppointment/{id}(id=${Appointment.id})}" class="btn btn-danger">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

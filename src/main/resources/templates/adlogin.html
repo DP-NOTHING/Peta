@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <style>
+      body{
+    
+    background-image: url('/Image/1.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+        form {
+          
+   
+            border: 1px solid #ccc;
+            border-radius : 10px;
+            background-color: #fff;
+            padding: 50px;
+            max-width: 500px;
+            height:350px;
+            margin: 0 auto;
+            margin-top: 100px;
+           
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: rgb(0,0,200,0.7);
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color:black;
+        }
+    </style>
+</head>
+<body>
+
+ 
+ <div>
+	<form action="#" th:action="@{/validate}" >
+        <h1>Login</h1>
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter E-mail" name="email" required>
+
+        <label for="password"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+    </div>
+</body>
+</html>

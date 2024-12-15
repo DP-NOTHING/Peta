@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Doctor Relationship Enhancement</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Doctor Relationship Enhancement</h1>
+        <hr>
+        <h2>Update Doctor</h2>
+
+        <form method="post" th:action="@{/update-appointment/{id}(id=${id})}" th:object="${appointment}">
+					<div class="form-group">
+						<label for="appointmentDateTime">Appointment Date and Time:</label>
+						<input type="datetime-local" id="appointmentDateTime" class="form-control"
+							th:field="*{appointmentDateTime}"required>
+					</div>
+					<div class="form-group">
+						<label for="doctor">Doctor:</label>
+						<select id="doctor" class="form-control" th:field="*{doctor}"required>
+							<option value="">Select a doctor</option>
+							<th:block th:each="doc : ${doctors}">
+								<option th:value="${doc.id}" th:text="${doc.name}"></option>
+							</th:block>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="patient">Patient:</label>
+						<select id="patient" class="form-control" th:field="*{patient}"required>
+							<option value="">Select a patient</option>
+							<th:block th:each="pat : ${patients}">
+								<option th:value="${pat.id}" th:text="${pat.name}"></option>
+							</th:block>
+						</select>
+					</div>
+					
+					<div class="form-group">
+						<label for="appointmentStatus">Appointment Status:</label>
+						<select id="appointmentStatus" class="form-control" th:field="*{appointmentStatus}"required>
+							<option value="Pending" selected="selected">Pending</option>
+							<option value="Done">Done</option>
+						</select>
+					</div>
+					
+					<button type="submit" class="btn btn-primary">Update</button>
+					<hr>
+					 <a th:href="@{/doctors}"> Back to Doctor List</a>
+				</form>
+    </div>
+</body>
+</html>

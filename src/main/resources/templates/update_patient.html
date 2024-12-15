@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Patient Relationship Enhancement</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Patient Relationship Enhancement</h1>
+        <hr>
+        <h2>Update Patient</h2>
+
+        <form action="#" th:action="@{/update-patient/{id}(id=${id})}" th:object="${patient}" method="POST">
+            <input type="text" th:field="*{name}" placeholder="Patient Name"
+				class="form-control mb-4 col-4"requiredss>
+			<input type="text" th:field="*{email}" placeholder="Patient Email" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{phoneNumber}" placeholder="Patient Phonenumber" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{address}" placeholder="Patient Address" class="form-control mb-4 col-4">
+			<input type="date" th:field="*{dateOfBirth}" class="form-control datepicker mb-4 col-2" placeholder="yyyy/mm/dd" pattern="\d{4}/\d{2}/\d{2}" title="Please enter a valid date in the format yyyy/mm/dd">
+            <button type="submit" class="btn btn-info col-2"> Update Patient</button>
+        </form>
+        <hr>
+        <a th:href="@{/}"> Back to Patient List</a>
+    </div>
+</body>
+</html>
