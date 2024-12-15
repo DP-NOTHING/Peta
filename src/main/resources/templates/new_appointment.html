@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New Appointment</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>New Appointment</h1>
+                <form method="post" th:action="@{/saveAppointment}" th:object="${appointment}">
+                    <div class="form-group">
+                        <label for="doctor">Doctor:</label>
+                        <select id="doctor" class="form-control" th:field="*{doctor}">
+                            <option value="">Select a doctor</option>
+                            <th:block th:each="doc : ${doctors}">
+                                <option th:value="${doc.id}" th:text="${doc.name}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="patient">Patient:</label>
+                        <select id="patient" class="form-control" th:field="*{patient}">
+                            <option value="">Select a patient</option>
+                            <th:block th:each="pat : ${patients}">
+                                <option th:value="${pat.id}" th:text="${pat.name}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+                    
+         
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

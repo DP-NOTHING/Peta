@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Patient Relationship Enhancement</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+<body>
+	<div class="container my-2">
+		<h1>Patient List</h1>
+		<a th:href="@{newPatientForm}" class="btn btn-primary btn-sm mb-3"> Add Patient </a>
+		<table border="1" class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>PhoneNumber</th>
+					<th>Address</th>
+					<th>Date of Birth</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="Patient : ${listPatients}">
+					<td th:text="${Patient.id}"></td>
+					<td th:text="${Patient.name}"></td>
+					<td th:text="${Patient.email}"></td>
+					<td th:text="${Patient.phoneNumber}"></td>
+					<td th:text="${Patient.address}"></td>
+					<td th:text="${Patient.dateOfBirth}"></td>
+					<td><a th:href="@{showFormForPatientUpdate/{id}(id=${Patient.id})}" class="btn btn-primary">Update</a>
+						<a th:href="@{deletePatient/{id}(id=${Patient.id})}" class="btn btn-danger">Delete</a>
+						<a th:href="@{showPatient/{id}(id=${Patient.id})}" class="btn btn-primary">Show Details</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
